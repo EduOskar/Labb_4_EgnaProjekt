@@ -14,9 +14,12 @@ namespace Labb_4_EgnaProjekt.UserMenu
         public static List<LoginUsers> userList = new List<LoginUsers>();
         public static void Run() 
         {
-            
+            Console.WriteLine("Hello and welcome to studentMenu");
+
+
             Console.WriteLine("1: StudentInformation");
             Console.WriteLine("2: ClassInformation");
+            Console.WriteLine("3: Loggout");
             int choice = int.Parse(Console.ReadLine());
             switch (choice)
             {
@@ -25,6 +28,9 @@ namespace Labb_4_EgnaProjekt.UserMenu
                     break;
                 case 2:
                     ClassInfo();
+                    break;
+                case 3:
+                    AhlingSchool.Run();
                     break;
             }
 

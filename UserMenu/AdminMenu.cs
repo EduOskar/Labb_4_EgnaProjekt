@@ -14,13 +14,13 @@ namespace Labb_4_EgnaProjekt.UserMenu
         public static AhlingsSchoolDbContext context = new AhlingsSchoolDbContext();
         public static void Run()
         {
-            int choice = 0;
 
+            Console.WriteLine("Hello and welcome to AdminMenu");
             Console.WriteLine("1 for add users: ");
             Console.WriteLine("2 for Employee Information");
             Console.WriteLine("3 department info");
             Console.WriteLine("4 Logout");
-            choice = int.Parse(Console.ReadLine());
+            int choice = int.Parse(Console.ReadLine());
             switch (choice)
             {
                 case 1:
