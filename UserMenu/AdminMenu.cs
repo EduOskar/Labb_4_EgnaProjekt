@@ -168,6 +168,9 @@ namespace Labb_4_EgnaProjekt.UserMenu
         static void DepartmentInfo()
         {
             Console.WriteLine("which department would you like to see total salary on?");
+            Console.WriteLine("Type the department: \nTeacher \nAdministrator \nJanitor \nBoss ");
+
+
             string departmentSalary = Console.ReadLine();
             var totsalary = (from q in context.Employees
                              where q.Title == departmentSalary
@@ -181,6 +184,8 @@ namespace Labb_4_EgnaProjekt.UserMenu
             Console.WriteLine($"Highest salary:{totsalary}\nLowest salary: {minSalary}\nAverage Salary: {averageSalary}");
 
             Console.WriteLine("which department would you like to see the total cost of?");
+            Console.WriteLine("Type the department: \nTeacher \nAdministrator \nJanitor \nBoss ");
+
             departmentSalary = Console.ReadLine();
             var TotalCost = ((from q in context.Employees
                               where q.Title == departmentSalary

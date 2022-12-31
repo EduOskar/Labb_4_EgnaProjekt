@@ -40,32 +40,26 @@ namespace Labb_4_EgnaProjekt
             LoginUsers existingUsers = null;
             LoginUsers existingPassword = null;
             LoginUsers role = null;
-            foreach (var item in userList)
-            {
-                Console.WriteLine(item.Username);
-                Console.WriteLine(item.Password);
-            }
-            Console.WriteLine();
+           
             Console.WriteLine("Please enter your username");
             enteredUsername = Console.ReadLine();
             Console.WriteLine("Please enter your password");
             enteredPassword = Console.ReadLine();
-
-
-            if (enteredUsername.Equals(_UserName) || enteredPassword.Equals(_PassWord))
+            try
             {
                 existingUsers = userList.Find(x => x.Username.Contains(enteredUsername));
                 existingPassword = userList.Find(x => x.Password.Contains(enteredPassword));
                 role = userList.Find(x => x.Role.Equals(existingUsers.Role));
+
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("You need to enter letters, numbers or signs to logg in, please try again");
-                Console.WriteLine("Press key to continue");
+                Console.WriteLine("Issue Happend");
                 Console.ReadKey();
-                Console.Clear();
-                Login();
+                Run();
+                throw;
             }
+            
             if (existingUsers.Username != enteredUsername || existingUsers.Password != enteredPassword)
             {
                 Console.WriteLine("wrong username or password, try again");
@@ -132,7 +126,6 @@ namespace Labb_4_EgnaProjekt
             _FirstName = firstName;
             _LastName = lastName;
             _UserName = userName;
-            _PassWord = passWord;
             Console.WriteLine("New user added");
             Console.WriteLine("Press key to continue");
             Console.ReadKey();
