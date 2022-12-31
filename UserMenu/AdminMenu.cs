@@ -93,8 +93,8 @@ namespace Labb_4_EgnaProjekt.UserMenu
                 Student stud1 = new Student();
 
                 stud1.Title = "Student";
-                //context.Add(stud1);
-                //context.SaveChanges();
+                context.Add(stud1);
+                context.SaveChanges();
                 Console.WriteLine("Student added");
                 Console.WriteLine("Press key to continue");
                 Console.ReadKey();
@@ -131,8 +131,8 @@ namespace Labb_4_EgnaProjekt.UserMenu
                     decimal salary = decimal.Parse(Console.ReadLine());
                     emp1.Salary = salary;
                 }
-                //context.Add(emp1);
-                //context.SaveChanges();
+                context.Add(emp1);
+                context.SaveChanges();
                 Console.WriteLine("employee added");
                 Console.WriteLine("Press key to continue");
                 Console.ReadKey();

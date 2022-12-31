@@ -11,6 +11,10 @@ namespace Labb_4_EgnaProjekt
 {
     public  class AhlingSchool
     {
+        public static string _FirstName { get; set; }
+        public static string _LastName { get; set; }
+        public static string  _UserName { get; set; }
+        public static string _PassWord { get; set; }
         public static List<LoginUsers> userList = new List<LoginUsers>();
         public static void Run() 
         {
@@ -28,7 +32,7 @@ namespace Labb_4_EgnaProjekt
             }
 
         }
-        internal static void Login()
+        public static void Login()
         {
             string enteredUsername = null;
             string enteredPassword = null;
@@ -36,17 +40,32 @@ namespace Labb_4_EgnaProjekt
             LoginUsers existingUsers = null;
             LoginUsers existingPassword = null;
             LoginUsers role = null;
-
+            foreach (var item in userList)
+            {
+                Console.WriteLine(item.Username);
+                Console.WriteLine(item.Password);
+            }
+            Console.WriteLine();
             Console.WriteLine("Please enter your username");
             enteredUsername = Console.ReadLine();
             Console.WriteLine("Please enter your password");
             enteredPassword = Console.ReadLine();
-            
-            existingUsers = userList.Find(x => x.Username.Contains(enteredUsername));
-            existingPassword = userList.Find(x => x.Password.Contains(enteredPassword));
-            role = userList.Find(x => x.Role.Equals(existingUsers.Role));
- 
 
+
+            if (enteredUsername.Equals(_UserName) || enteredPassword.Equals(_PassWord))
+            {
+                existingUsers = userList.Find(x => x.Username.Contains(enteredUsername));
+                existingPassword = userList.Find(x => x.Password.Contains(enteredPassword));
+                role = userList.Find(x => x.Role.Equals(existingUsers.Role));
+            }
+            else
+            {
+                Console.WriteLine("You need to enter letters, numbers or signs to logg in, please try again");
+                Console.WriteLine("Press key to continue");
+                Console.ReadKey();
+                Console.Clear();
+                Login();
+            }
             if (existingUsers.Username != enteredUsername || existingUsers.Password != enteredPassword)
             {
                 Console.WriteLine("wrong username or password, try again");
@@ -110,6 +129,10 @@ namespace Labb_4_EgnaProjekt
                 Run();
             }  
             userList.Add(new LoginUsers(userName, passWord, firstName, lastName, role));
+            _FirstName = firstName;
+            _LastName = lastName;
+            _UserName = userName;
+            _PassWord = passWord;
             Console.WriteLine("New user added");
             Console.WriteLine("Press key to continue");
             Console.ReadKey();

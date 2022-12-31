@@ -63,20 +63,22 @@ namespace Labb_4_EgnaProjekt.UserMenu
             Console.WriteLine("Last Name");
             var studentChoiceLname = Console.ReadLine();
 
-            var Student = from q in context.Students
-                       join w in context.PersonalInformations on q.FkPersonIdStudent equals w.PersonId
-                       join e in context.Classes on q.FkClassId equals e.ClassId
-                       join t in context.GradingTables on e.FkGradingTable equals t.GradingId
-                       where w.Fname == studentChoice && w.Lname == studentChoiceLname
-                       select new
-                       {
-                           PersonalInformation = w.Fname,
-                           PersonalInformation1 = w.Lname,
-                           PersonalInformation3 = w.PersonId,
-                           Students = q.StudentId,
-                           Class = e.ClassName,
-                           ClassId = e.ClassId
-                       };
+            var Student = from q in context.Schools
+                          join b in context.Students on q.FkStudentId equals b.StudentId
+                          join w in context.PersonalInformations on b.StudentId equals w.PersonId
+                          join e in context.Classes on q.FkClassId equals e.ClassId
+                          join t in context.GradingTables on e.FkGradingTable equals t.GradingId
+                          where w.Fname == studentChoice && w.Lname == studentChoiceLname
+                          select new
+                          {
+                              PersonalInformation = w.Fname,
+                              PersonalInformation1 = w.Lname,
+                              PersonalInformation3 = w.PersonId,
+                              Students = q.FkStudentId,
+                              Class = e.ClassName,
+                              ClassId = e.ClassId,
+                              grades = t.Grade
+                          };
             foreach (var item in Student)
             {
                 Console.WriteLine($"name: {item.PersonalInformation} {item.PersonalInformation1} StudentId: {item.Students}");
